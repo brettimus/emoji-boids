@@ -39,7 +39,7 @@ Boid.prototype.initialize = function(seed, bounds) {
     this.element.style.top             = y;
     this.element.style.left            = x;
 
-    this.element.style.transition      = "transform "+this.sky.interval+"ms linear"; // TODO config
+    this.element.style.transition      = "transform "+this.sky.interval+"ms ease-in-out"; // TODO config
     this.element.style.transform       = "";
     this.element.style.webkitTransform = "";
 };
