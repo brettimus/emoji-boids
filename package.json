@@ -1,8 +1,8 @@
 {
   "name": "emoji-boids",
   "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
+  "description": "pizza and craig, mayne",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
