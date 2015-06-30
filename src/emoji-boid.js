@@ -29,7 +29,7 @@ Boid.prototype.initialize = function(seed, bounds) {
     //  TODO config starting
     var x = Math.floor(Math.random()*(bounds.xMax - bounds.xMin)) + bounds.xMin;
     var y = Math.floor(Math.random()*(bounds.yMax - bounds.yMin)) + bounds.yMin;
-    this.position = new Vector(x, y);
+    this.position = new Vector(x + this.sky.flockTo.x, y +this.sky.flockTo.y);
     this.velocity = new Vector(0, 0);
 
     this.element = document.createElement("span");

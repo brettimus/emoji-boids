@@ -18,9 +18,10 @@ function Sky(elt, options) {
     };
     this.canvas = elt;
     this.emojis = options.emojis;
-    this.initialize(options);
     this.interval = options.interval;
     this.flockTo = options.flockTo;
+
+    this.initialize(options);
 }
 
 /**
