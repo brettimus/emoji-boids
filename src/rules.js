@@ -34,11 +34,10 @@ function repel(boid, boids) {
 
         if (boid === b)
             return result;
-        if (b.position.squaredDistanceFrom(boid.position) < 100*100)
+        if (b.position.squaredDistanceFrom(boid.position) < 10000)
             return result.subtract(b.position.subtract(boid.position));
 
         return result;
-
 
     }, new Vector(0,0));
 }

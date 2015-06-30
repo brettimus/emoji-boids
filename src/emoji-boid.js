@@ -27,19 +27,19 @@ Boid.prototype.draw = function(elt) {
  */
 Boid.prototype.initialize = function(seed, bounds) {
     //  TODO config starting
-    var x = Math.floor(Math.random()*(bounds.xMax - bounds.xMin)) + bounds.xMin;
-    var y = Math.floor(Math.random()*(bounds.yMax - bounds.yMin)) + bounds.yMin;
-    this.position = new Vector(x + this.sky.flockTo.x, y +this.sky.flockTo.y);
+    var x = Math.floor(Math.random()*(bounds.xMax - bounds.xMin)) + bounds.xMin + this.sky.flockTo.x;
+    var y = Math.floor(Math.random()*(bounds.yMax - bounds.yMin)) + bounds.yMin + this.sky.flockTo.y;
+    this.position = new Vector(x, y);
     this.velocity = new Vector(0, 0);
 
     this.element = document.createElement("span");
     this.element.innerHTML = this.emoji;
 
     this.element.style.position        = "absolute";
-    this.element.style.top        = y;
-    this.element.style.left        = x;
+    this.element.style.top             = y;
+    this.element.style.left            = x;
 
-    this.element.style.transition      = "transform 150ms ease-in"; // TODO config
+    this.element.style.transition      = "transform "+this.sky.interval+"ms linear"; // TODO config
     this.element.style.transform       = "";
     this.element.style.webkitTransform = "";
 };

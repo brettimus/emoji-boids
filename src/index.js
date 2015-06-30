@@ -21,9 +21,9 @@ function emojiBoids(selector, options) {
     var sky,
         defaults = {
             emojis: ["🍕"],
-            boids: 60,
+            boids: 120,
             flockTo: new Vector(containerDims.width/2, containerDims.height/2),
-            interval: 220,
+            interval: 210,
             turns: null,
             xMin: 0,
             xMax: containerDims.width,
@@ -35,7 +35,6 @@ function emojiBoids(selector, options) {
     sky = new Sky(container, options);
 
     if (options.turns) {
-        global.sky;
         sky.moveBoids();
     } else {
         setInterval(function() {

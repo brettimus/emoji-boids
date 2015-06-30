@@ -262,19 +262,19 @@ Boid.prototype.draw = function(elt) {
  */
 Boid.prototype.initialize = function(seed, bounds) {
     //  TODO config starting
-    var x = Math.floor(Math.random()*(bounds.xMax - bounds.xMin)) + bounds.xMin;
-    var y = Math.floor(Math.random()*(bounds.yMax - bounds.yMin)) + bounds.yMin;
-    this.position = new Vector(x + this.sky.flockTo.x, y +this.sky.flockTo.y);
+    var x = Math.floor(Math.random()*(bounds.xMax - bounds.xMin)) + bounds.xMin + this.sky.flockTo.x;
+    var y = Math.floor(Math.random()*(bounds.yMax - bounds.yMin)) + bounds.yMin + this.sky.flockTo.y;
+    this.position = new Vector(x, y);
     this.velocity = new Vector(0, 0);
 
     this.element = document.createElement("span");
     this.element.innerHTML = this.emoji;
 
     this.element.style.position        = "absolute";
-    this.element.style.top        = y;
-    this.element.style.left        = x;
+    this.element.style.top             = y;
+    this.element.style.left            = x;
 
-    this.element.style.transition      = "transform 150ms ease-in"; // TODO config
+    this.element.style.transition      = "transform "+this.sky.interval+"ms linear"; // TODO config
     this.element.style.transform       = "";
     this.element.style.webkitTransform = "";
 };
@@ -346,9 +346,9 @@ function emojiBoids(selector, options) {
     var sky,
         defaults = {
             emojis: ["🍕"],
-            boids: 60,
+            boids: 120,
             flockTo: new Vector(containerDims.width/2, containerDims.height/2),
-            interval: 220,
+            interval: 210,
             turns: null,
             xMin: 0,
             xMax: containerDims.width,
@@ -360,7 +360,6 @@ function emojiBoids(selector, options) {
     sky = new Sky(container, options);
 
     if (options.turns) {
-        global.sky;
         sky.moveBoids();
     } else {
         setInterval(function() {
@@ -410,11 +409,10 @@ function repel(boid, boids) {
 
         if (boid === b)
             return result;
-        if (b.position.squaredDistanceFrom(boid.position) < 100*100)
+        if (b.position.squaredDistanceFrom(boid.position) < 10000)
             return result.subtract(b.position.subtract(boid.position));
 
         return result;
-
 
     }, new Vector(0,0));
 }
@@ -498,13 +496,13 @@ Sky.prototype.initialize = function(options) {
  *
  */
 Sky.prototype.moveBoids = function() {
-    // window.requestAnimationFrame(function() {
+    window.requestAnimationFrame(function() {
         this.boids.forEach(function(b) {
             window.requestAnimationFrame(function() {
                 b.move(this.boids, this.flockTo, this.bounds);
             }.bind(this));
         }, this);
-    // }.bind(this));
+    }.bind(this));
 };
 
 /**
@@ -590,10 +588,6 @@ Vector.prototype.subtract = function(v) {
 
 Vector.prototype.scale = function(k) {
     return new Vector(this.x * k, this.y * k);
-};
-
-Vector.prototype.length = function() {
-    return Math.sqrt(this.x*this.x + this.y*this.y);
 };
 
 Vector.prototype.distanceFrom = function(v) {

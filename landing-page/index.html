@@ -15,7 +15,9 @@
         <link rel="stylesheet" href="css/style.css">
         <style>
             #emoji-boids {
-                height: 600px;
+                height: 200px;
+                margin-top: 100px;
+                margin-left: 50%;
                 position: relative;
                 width: 100%;
             }
@@ -39,6 +41,7 @@
             onDomReady(function getThisEmojiBoidPartyStarted() {
 
                 test = emojiBoids("#emoji-boids", {
+                    boids: 42,
                     interval: 220,
                 });
 

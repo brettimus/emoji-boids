@@ -38,13 +38,13 @@ Sky.prototype.initialize = function(options) {
  *
  */
 Sky.prototype.moveBoids = function() {
-    // window.requestAnimationFrame(function() {
+    window.requestAnimationFrame(function() {
         this.boids.forEach(function(b) {
             window.requestAnimationFrame(function() {
                 b.move(this.boids, this.flockTo, this.bounds);
             }.bind(this));
         }, this);
-    // }.bind(this));
+    }.bind(this));
 };
 
 /**
